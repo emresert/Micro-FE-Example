@@ -1,14 +1,15 @@
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
+// Header component'i headerApp source'unden import edildi
 import Header from "headerApp/Header";
-
-
 
 const App = () => {
 
+  // seçili ürünleri tutan ve prop olarak geçilecek olan state
   const [selectedProducts, setSelectedProducts] = useState([])
 
+  // dummy ürün listesi 
   const products = [{
     id: "11", name: "Product 1", image: "https://picsum.photos/300/300"
   }, {
@@ -23,25 +24,33 @@ const App = () => {
 
   return (
     <div className="mt-10 text-3xl mx-auto max-w-6xl">
+
+      { /* Header componenti kullanımı */}
       <Header
         selectedProducts={selectedProducts}
       />
 
       <div className="list-wrapper" style={{ margin: "25px" }}>
 
+        { /* ürün listeleme */}
         {
+
           products.map((pItem, index) => {
             const checkData = selectedProducts.find((el) => el.id == pItem.id)
             return (
               <div key={index} className="item-wrapper" style={{ display: "flex", alignItems: "center", margin: "5px" }}>
+
                 <div style={{ marginRight: "25px", maxHeight: "50px" }}>
                   <img src={pItem.image} style={{ maxHeight: "50px", borderRadius: "5px", border: "1px solid black" }} width={50} height={50} alt="item" />
                 </div>
+
                 <div style={{ marginRight: "25px" }}>{pItem.name}</div>
+
                 <div>
-                  <button style={{ backgroundColor: "dodgerblue", padding: "5px", borderRadius: "5px" , minWidth:"60px" ,color:"white", fontSize:"13px",cursor:"pointer" }} onClick={() => {
-                   
-                  
+
+                  <button style={{ backgroundColor: "dodgerblue", padding: "5px", borderRadius: "5px", minWidth: "60px", color: "white", fontSize: "13px", cursor: "pointer" }} onClick={() => {
+
+                    // seç butonuna basıldığında alınacak aksiyon 
                     if (!checkData) {
                       let arr = []
                       selectedProducts.map((item) => {
@@ -50,12 +59,13 @@ const App = () => {
                       arr.push(pItem)
                       setSelectedProducts(arr)
                     }
+
                   }}>
-                    {
-                      checkData ? "Seçildi" : "Seç"
-                    }
-                  
+
+                    {checkData ? "Seçildi" : "Seç"}
+
                   </button>
+
                 </div>
               </div>
             )

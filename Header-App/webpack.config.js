@@ -46,8 +46,10 @@ module.exports = (_, argv) => ({
       remotes: {
 
       },
+      // Dışarıdan erişime açma configurasyonları
       exposes: {
-        "./Header" : "./src/components/Header.tsx"
+        // Header Component'i alt satırdaki tanımlama ile beraber dışarıdan erişime açılır.
+        "./Header" : "./src/components/Header.tsx" 
       },
       shared: {
         ...deps,

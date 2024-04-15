@@ -44,7 +44,12 @@ module.exports = (_, argv) => ({
       name: "List_App",
       filename: "remoteEntry.js",
       remotes: {
+
+        // Header-App uygulamasındaki Header componentimize uzaktan erişim için
+        // remoteEntry.js'e istek atarak componentimizi List-App uygulamnamıza import ederiz
+        // import Header from "headerApp/Header";
         headerApp : "Header_App@http://localhost:3000/remoteEntry.js"
+      
       },
       exposes: {},
       shared: {
